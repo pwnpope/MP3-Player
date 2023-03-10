@@ -3,5 +3,8 @@ play mp3's from your terminal! able to download from soundcloud and youtube, dis
 ![](https://gcdnb.pbrd.co/images/n1QbpKP9crFi.png?o=1)
 
 ```
-git clone https://github.com/bytecodez/MP3-Player
+git clone https://github.com/bytecodez/MP3-Player.git
+cd MP3-Player
+chmod +x install.sh;./install.sh
+python3 player.py
 ```
