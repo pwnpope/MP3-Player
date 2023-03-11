@@ -1,4 +1,3 @@
-# pip3 install pytube;pip3 install soundcloud-lib;pip3 install python-vlc
 from pytube import YouTube
 import os
 from sclib import SoundcloudAPI, Track, Playlist
@@ -10,7 +9,7 @@ import vlc
 colors = [Fore.RED, Fore.WHITE, Fore.YELLOW, Fore.GREEN, Fore.MAGENTA, Fore.CYAN]
 
 
-music_folder = ""
+music_folder = input("enter music folder :>")
 
 def display_menu():
     files = os.listdir("ascii")
@@ -21,28 +20,20 @@ def display_menu():
 1. Youtube 2 Mp3
 2. Soundcloud 2 Mp3
 3. Play music
-4. Set new folder for Mp3's
-5. stop playing music
-6. exit
-7. clear screen
+4. stop playing music
+5. exit
+6. clear screen
     """)
 
 
-
-def set_up_folder(destination):
-    if destination[-1] == "/":
-        print("[+] please do not include a / at the end [+]")
-    else:
-        return destination
-
 def play_music(stop_music=False):
     counter = 0
-    songs = {}
+    songs = []
     if stop_music is False:
         for each_song in os.listdir(music_folder):
             print(f"{counter} | {choice(colors)}{each_song}{colors[1]}")
             counter += 1
-            songs[counter]=each_song        
+            songs.append(each_song)        
         
         which_song = input("enter song number :>")
         song = songs[int(which_song)]
@@ -56,22 +47,19 @@ def main():
     try:
         while True:
             user_input = input("MP3 Player :> ")
-            if user_input == "6" or user_input == "exit":
+            if user_input == "5" or user_input == "exit":
                 exit(0x00)
             elif user_input == "help" or user_input == "?" or user_input == "menu":
                 display_menu()
-            elif user_input == "4" or user_input == "folder":
-                dest = input("enter folder :> ")
-                music_folder = set_up_folder(dest)
             elif user_input == "2":
                 soundcloud_to_mp3(music_folder)
             elif user_input == "1":
                 youtube_to_mp3(music_folder)
             elif user_input == "3":
                 play_music()
-            elif user_input == "5" or user_input == "stop":
+            elif user_input == "4" or user_input == "stop":
                 play_music(stop_music=True)
-            elif user_input == "7" or user_input == "clear":
+            elif user_input == "6" or user_input == "clear":
                 os.system("clear")
             else:
                 print(f"{user_input} is not a command silly goose")
